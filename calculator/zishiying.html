@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>移动h5自适应布局</title>
+    <style>
+        /*320px布局*/
+        html {
+            font-size: 100px;
+        }
+
+        body {
+            font-size: 0.14rem; /*实际相当于14px*/
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .div2 {
+            font-size: 0.14rem;
+        }
+
+        .div3 {
+            padding: 0.14rem;
+            width: 3rem;
+            height: 3rem;
+
+            border: 1px solid #000;
+            box-sizing: border-box;
+        }
+
+        .div4 {
+            margin-top: 0.1rem;
+            width: 2rem;
+            height: 2rem;
+
+            border: 1px solid #000;
+            box-sizing: border-box;
+        }
+
+        .img1 {
+            width: 3.2rem;
+        }
+        .label1{
+            background-color: #EEEEEF;
+            text-decoration-color: #FF0000;
+            font-size: 0.14rem;
+            width: 0.8rem;
+            height: 0.3rem;
+            text-align: center;
+            vertical-align: middle;
+            display: table-cell;
+        }
+        .label2{
+            width: 2.2rem;
+            height: 0.3rem;
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 0.3rem;
+        }
+        .label{
+            margin-top: 0.07rem;
+            margin-left: 0.14rem;
+        }
+
+        .bottomdiv{
+            width: 2.2rem;
+            height: 1.0rem;
+        }
+
+    </style>
+</head>
+<body>
+<img class="img1" src="http://bmob-cdn-14211.b0.upaiyun.com/2018/01/09/09761500401cbd74806db1b2afbfa784.png" alt=""/>
+
+<div class="label">
+    <div class="label1">产品名称</div>
+    <div class="label2">鲜牛肉</div>
+</div>
+
+
+<div class="label">
+    <div class="label1">产地</div>
+    <div class="label2">河北秦皇岛</div>
+</div>
+
+<div class="label">
+    <div class="label1">等级</div>
+    <div class="label2">一级</div>
+</div>
+
+<div class="label">
+    <div class="label1">生产日期</div>
+    <div class="label2">2018-01-09</div>
+</div>
+
+<div class="label">
+    <div class="label1">储存方式</div>
+    <div class="label2">常温保存/15天</div>
+</div>
+
+
+<div class="label">
+    <div class="label1">批次编号</div>
+    <div class="label2">2018010912345687</div>
+</div>
+
+
+<div class="label">
+    <div class="label1">包装方式</div>
+    <div class="label2">食用鲜肉</div>
+</div>
+
+
+<div class="label">
+    <div class="label1">生产单位</div>
+    <div class="label2">昌黎县黎洪清真屠宰场</div>
+</div>
+
+
+<div class="label">
+    <div class="label1">功效</div>
+    <div class="label2">牛肉含有丰富的蛋白质,氨基酸</div>
+</div>
+
+
+<div class="bottomdiv">
+
+</div>
+
+<!--<div class="div2">动态更改html元素大小</div>-->
+<!--<div class="div3">div3</div>-->
+<!--<div class="div4">div4</div>-->
+
+
+</body>
+<script>
+    // 该代码来自http://www.ghugo.com/mobile-h5-fluid-layout-for-iphone6/
+    (function (doc, win) {
+        // 分辨率Resolution适配
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 320) + 'px';
+            };
+
+        // Abort if browser does not support addEventListener
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+
+        // 一物理像素在不同屏幕的显示效果不一样。要根据devicePixelRatio来修改meta标签的scale,
+
+//        要注释上面的meta标签
+        (function () {
+            return;
+            var dpr = scale = 1;
+            var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+            var devicePixelRatio = win.devicePixelRatio;
+            if (isIPhone) {
+                // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
+                if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
+                    dpr = 3;
+                } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)) {
+                    dpr = 2;
+                } else {
+                    dpr = 1;
+                }
+            } else {
+                // 其他设备下，仍旧使用1倍的方案
+                dpr = 1;
+            }
+            scale = 1 / dpr;
+
+            //
+            var metaEl = "";
+            metaEl = doc.createElement('meta');
+            metaEl.setAttribute('name', 'viewport');
+            metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' +
+
+                scale + ', minimum-scale=' + scale + ', user-scalable=no');
+            if (docEl.firstElementChild) {
+                docEl.firstElementChild.appendChild(metaEl);
+            } else {
+                var wrap = doc.createElement('div');
+                wrap.appendChild(metaEl);
+                doc.write(wrap.innerHTML);
+            }
+        })();
+
+    })(document, window);
+</script>
+</html>

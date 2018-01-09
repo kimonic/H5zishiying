@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    返现金额(元)：
+    <input type="number" name="myName" value="0">
+    <br/>
+    年化收益(%)：
+    <input type="number" name="pass" value="0">
+    <br/>
+    投资时间(月)：
+    <input type="number" name="pass" value="1">
+    <br/>
+    投资金额(万元)：
+    <input type="number" name="pass" value="0">
+    <br/>
+</form>
+<!--<label>-->
+    <button id="jisuan" onclick=hehe()>计算</button>
+
+<!--</label>-->
+
+
+<script type="text/javascript">
+    function hehe() {
+        var fanxianjine=document.getElementsByTagName("input")[0].value;
+        var nianhushouyi=document.getElementsByTagName("input")[1].value/100;
+        var touzishijian=document.getElementsByTagName("input")[2].value;
+        var touzijine=document.getElementsByTagName("input")[3].value*10000;
+        var lixishouyi=sum(fanxianjine,nianhushouyi*touzijine*touzishijian/12);
+        document.write(
+            "总年化收益率(%):<br/>"+
+            "<br/>"+
+            lixishouyi*12/touzishijian/touzijine*100
+            +"%"
+        ); //输出获取的P标签。
+    }
+
+    function sum(a,b) {
+        return parseFloat(a)+parseFloat(b);
+    }
+
+</script>
+</body>
+</html>
